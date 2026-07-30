@@ -1,0 +1,38 @@
+{
+  "name": "pi-quote",
+  "version": "0.1.0",
+  "description": "Quote previous messages in Pi's editor",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "pi",
+    "quote",
+    "reply"
+  ],
+  "license": "Apache-2.0",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.83.0",
+    "@types/node": "^22.20.1",
+    "tsx": "^4.23.1",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "validate": "npm run check && npm test"
+  }
+}
