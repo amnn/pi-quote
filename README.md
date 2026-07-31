@@ -22,7 +22,7 @@ Wouldn't refreshing on reads prevent active users from ever expiring?
 Install from this repo:
 
 ```sh
-pi install git:github.com/amnn/quote
+pi install git:github.com/amnn/pi-quote
 ```
 
 Or try it without installing:
