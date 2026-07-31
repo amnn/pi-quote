@@ -10,7 +10,7 @@ import {
 import extension, {
   appendBlockquote,
   parseQuoteCommand,
-} from "../src/index.ts";
+} from "../index.ts";
 
 type Command = {
   handler: (args: string, ctx: ExtensionContext) => Promise<void> | void;

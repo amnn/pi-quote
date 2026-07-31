@@ -28,7 +28,7 @@ pi install git:github.com/amnn/pi-quote
 Or try it without installing:
 
 ```sh
-pi -e ./src/index.ts
+pi -e .
 ```
 
 Pi packages installed from a local path track that path, so edits take effect
