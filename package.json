@@ -11,6 +11,13 @@
     "reply"
   ],
   "license": "Apache-2.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.20.0",
+      "onFail": "download"
+    }
+  },
   "files": [
     "index.ts",
     "src",
@@ -34,6 +41,6 @@
   "scripts": {
     "check": "tsc --noEmit",
     "test": "tsx --test test/*.test.ts",
-    "validate": "npm run check && npm test"
+    "validate": "pnpm run check && pnpm test"
   }
 }

@@ -79,9 +79,13 @@ and no browser or external editor.
 
 ## Development
 
+Development requires Node.js 22.19 or newer and pnpm. The repository's
+`devEngines` configuration pins the pnpm version and lets pnpm download it when
+necessary.
+
 ```sh
-npm install
-npm run validate
+pnpm install
+pnpm validate
 ```
 
 ## License
