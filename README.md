@@ -40,11 +40,11 @@ modes.
 
 ## Usage
 
-| Action | Shortcut | Command |
-| --- | --- | --- |
-| Quote latest message | `C-q` | `/quote` or `/quote latest` |
-| Pick a past message | `M-q` | `/quote pick` |
-| Quote by recency | — | `/quote 1`, `/quote 2`, … |
+| Action               | Shortcut | Command                     |
+| -------------------- | -------- | --------------------------- |
+| Quote latest message | `C-q`    | `/quote` or `/quote latest` |
+| Pick a past message  | `M-q`    | `/quote pick`               |
+| Quote by recency     | —        | `/quote 1`, `/quote 2`, …   |
 
 Numbers are newest-first among visible assistant messages on the active branch:
 `1` is the latest message and `2` is the message before it. The history picker
@@ -88,6 +88,14 @@ pnpm install
 pnpm validate
 ```
 
+Validation checks formatting, type-checks the package, and runs the tests. To
+check or apply formatting separately:
+
+```sh
+pnpm format:check
+pnpm format
+```
+
 ## License
 
-Apache License 2.0. See [LICENSE.md](LICENSE.md).
+Apache License 2.0. See [LICENSE](LICENSE).

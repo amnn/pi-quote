@@ -1,3 +1,6 @@
+// Copyright (c) Ashok Menon
+// SPDX-License-Identifier: Apache-2.0
+
 import assert from "node:assert/strict";
 import test from "node:test";
 
@@ -7,10 +10,7 @@ import {
   initTheme,
 } from "@earendil-works/pi-coding-agent";
 
-import extension, {
-  appendBlockquote,
-  parseQuoteCommand,
-} from "../index.ts";
+import extension, { appendBlockquote, parseQuoteCommand } from "../index.ts";
 
 type Command = {
   handler: (args: string, ctx: ExtensionContext) => Promise<void> | void;
