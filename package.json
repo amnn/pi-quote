@@ -40,10 +40,11 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "check": "tsc --noEmit",
+    "test": "tsx --test \"test/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit",
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
-    "test": "tsx --test test/*.test.ts",
-    "validate": "pnpm run format:check && pnpm run check && pnpm test"
+    "smoke": "pi --offline --no-extensions -e . --list-models __pi_package_smoke__",
+    "check": "pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run smoke && pnpm audit"
   }
 }

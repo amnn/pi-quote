@@ -85,11 +85,12 @@ necessary.
 
 ```sh
 pnpm install
-pnpm validate
+pnpm check
 ```
 
-Validation checks formatting, type-checks the package, and runs the tests. To
-check or apply formatting separately:
+The full check verifies formatting, type-checks the package, runs the tests,
+smoke-tests extension loading without a model request, and audits dependencies.
+To check or apply formatting separately:
 
 ```sh
 pnpm format:check
