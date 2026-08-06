@@ -12,33 +12,36 @@ Markdown block quote, then type your reply underneath it.
 Wouldn't refreshing on reads prevent active users from ever expiring?
 ```
 
+## Installation
+
+Install the published package from npm (recommended):
+
+```bash
+pi install npm:pi-quote
+```
+
+Alternatively, install the latest source directly from GitHub:
+
+```bash
+pi install git:github.com/amnn/pi-quote
+```
+
+To install from a local checkout:
+
+```bash
+git clone https://github.com/amnn/pi-quote.git
+cd pi-quote
+pnpm install
+pi install .
+```
+
+Confirm the installation with `pi list`. After installing an update or changing
+a local checkout, run `/reload` in Pi or restart it.
+
 ## Features
 
 - `C-q` quote the latest assistant message
 - `M-q` pick an assistant message from the session tree to quote
-
-## Install
-
-Install the published package from npm:
-
-```sh
-pi install npm:pi-quote
-```
-
-Install the latest source directly from GitHub:
-
-```sh
-pi install git:github.com/amnn/pi-quote
-```
-
-Or try a local checkout without installing it:
-
-```sh
-pi -e .
-```
-
-Pi packages installed from a local path track that path, so edits take effect
-after `/reload`.
 
 `pi-quote` is intentionally TUI-only because it reads and updates Pi's
 interactive editor. Quote actions are unavailable in RPC, JSON, and print
@@ -86,7 +89,7 @@ and no browser or external editor.
 ## Development
 
 Development requires Node.js 22.19 or newer and pnpm. The repository's
-`devEngines` configuration pins the pnpm version and lets pnpm download it when
+`packageManager` field pins the pnpm version and lets pnpm download it when
 necessary.
 
 ```sh
