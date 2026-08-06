@@ -19,13 +19,19 @@ Wouldn't refreshing on reads prevent active users from ever expiring?
 
 ## Install
 
-Install from this repo:
+Install the published package from npm:
+
+```sh
+pi install npm:pi-quote
+```
+
+Install the latest source directly from GitHub:
 
 ```sh
 pi install git:github.com/amnn/pi-quote
 ```
 
-Or try it without installing:
+Or try a local checkout without installing it:
 
 ```sh
 pi -e .

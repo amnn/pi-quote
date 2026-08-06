@@ -2,6 +2,14 @@
   "name": "pi-quote",
   "version": "0.1.0",
   "description": "Quote previous messages in Pi's editor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amnn/pi-quote.git"
+  },
+  "homepage": "https://github.com/amnn/pi-quote#readme",
+  "bugs": {
+    "url": "https://github.com/amnn/pi-quote/issues"
+  },
   "type": "module",
   "keywords": [
     "pi-package",
@@ -11,6 +19,9 @@
     "reply"
   ],
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.19.0"
+  },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
@@ -24,6 +35,9 @@
     "README.md",
     "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "pi": {
     "extensions": [
       "./index.ts"
@@ -45,6 +59,7 @@
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
     "smoke": "pi --offline --no-extensions -e . --list-models __pi_package_smoke__",
-    "check": "pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run smoke && pnpm audit"
+    "check": "pnpm run format:check && pnpm run typecheck && pnpm test && pnpm run smoke && pnpm audit",
+    "prepublishOnly": "pnpm check"
   }
 }
