@@ -1,6 +1,6 @@
 {
   "name": "pi-quote",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Quote previous messages in Pi's editor",
   "repository": {
     "type": "git",
