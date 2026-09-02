@@ -1,7 +1,7 @@
 {
   "name": "pi-quote",
   "version": "0.1.1",
-  "description": "Quote previous messages in Pi's editor",
+  "description": "Quote and reply to previous messages in the Pi coding agent",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amnn/pi-quote.git"
@@ -15,8 +15,13 @@
     "pi-package",
     "pi-extension",
     "pi",
+    "pi-coding-agent",
+    "coding-agent",
+    "ai-agent",
     "quote",
-    "reply"
+    "reply",
+    "message",
+    "context"
   ],
   "license": "Apache-2.0",
   "engines": {
