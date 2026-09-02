@@ -1,8 +1,8 @@
 # pi-quote
 
-A small [Pi](https://pi.dev) extension for replying with context. Press
-`Ctrl+Q` to append the latest assistant message to the current input as a
-Markdown block quote, then type your reply underneath it.
+A small [Pi coding agent](https://pi.dev) extension for replying to previous
+assistant messages with context. Press `Ctrl+Q` to quote the latest response
+into Pi's editor, then type your reply underneath it.
 
 ```md
 > The cache should use a 24-hour TTL.
