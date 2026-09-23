@@ -293,18 +293,27 @@ export default function (pi: ExtensionAPI): void {
       switch (command.kind) {
         case "latest":
           appendAtIndex(ctx, 0);
-          return;
+          break;
         case "pick":
           await pickEntry(ctx);
-          return;
+          break;
         case "index":
           appendAtIndex(ctx, command.index);
-          return;
+          break;
         case "help":
           ctx.ui.notify(QUOTE_USAGE, "info");
           return;
         case "invalid":
           ctx.ui.notify(QUOTE_USAGE, "warning");
+          return;
+      }
+
+      // setEditorText does not request a render, and slash commands can run
+      // after the Enter key's repaint. Clearing our unused status requests one
+      // without displaying anything. Shortcuts retain their input-driven render.
+      // Remove this workaround when Pi's setEditorText requests its own render.
+      if (ctx.mode === "tui") {
+        ctx.ui.setStatus("pi-quote:refresh", undefined);
       }
     },
   });
