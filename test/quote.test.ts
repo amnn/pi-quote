@@ -88,6 +88,7 @@ test("latest and numeric selection quote independent assistant entries", async (
   assert.ok(cmds.has("quote"));
 
   let editor = "Draft";
+  const refreshes: string[] = [];
   const notifications: Array<[string, string | undefined]> = [];
 
   const branch = [
@@ -120,6 +121,11 @@ test("latest and numeric selection quote independent assistant entries", async (
       setEditorText: (value: string) => {
         editor = value;
       },
+      setStatus: (key: string, value: string | undefined) => {
+        assert.equal(key, "pi-quote:refresh");
+        assert.equal(value, undefined);
+        refreshes.push(editor);
+      },
       notify: (message: string, level?: string) => {
         notifications.push([message, level]);
       },
@@ -129,6 +135,15 @@ test("latest and numeric selection quote independent assistant entries", async (
   await keys.get("ctrl+q")!.handler(ctx);
   assert.equal(editor, "Draft\n\n> Second answer\n\n");
   assert.deepEqual(lookups, []);
+  assert.deepEqual(refreshes, []);
+
+  for (const args of ["", "latest"]) {
+    editor = "";
+    await cmds.get("quote")!.handler(args, ctx);
+    assert.equal(editor, "> Second answer\n\n");
+  }
+  assert.deepEqual(refreshes, ["> Second answer\n\n", "> Second answer\n\n"]);
+  refreshes.length = 0;
 
   lookups.length = 0;
   editor = "";
@@ -139,11 +154,17 @@ test("latest and numeric selection quote independent assistant entries", async (
   await cmds.get("quote")!.handler("3", ctx);
   assert.equal(editor, "> Follow-up answer\n\n");
   assert.deepEqual(notifications, []);
+  assert.deepEqual(refreshes, [
+    "> Second question\n\n",
+    "> Follow-up answer\n\n",
+  ]);
+  refreshes.length = 0;
 
   ctx.mode = "rpc";
   editor = "Draft";
   await cmds.get("quote")!.handler("latest", ctx);
   assert.equal(editor, "Draft");
+  assert.deepEqual(refreshes, []);
   assert.deepEqual(notifications, [
     ["pi-quote is only available in TUI mode.", "warning"],
   ]);
@@ -151,10 +172,13 @@ test("latest and numeric selection quote independent assistant entries", async (
 
 test("the session tree rejects an entry without a message", async () => {
   initTheme("dark");
+  const cmds = new Map<string, Command>();
   const keys = new Map<string, Shortcut>();
 
   const api = {
-    registerCommand() {},
+    registerCommand(name: string, options: unknown) {
+      cmds.set(name, options as Command);
+    },
     registerShortcut(key: string, options: unknown) {
       keys.set(key, options as Shortcut);
     },
@@ -163,6 +187,7 @@ test("the session tree rejects an entry without a message", async () => {
   extension(api as unknown as ExtensionAPI);
 
   let editor = "";
+  const refreshes: string[] = [];
   const notifications: string[] = [];
 
   const branch = [
@@ -203,6 +228,12 @@ test("the session tree rejects an entry without a message", async () => {
         editor = value;
       },
 
+      setStatus(key: string, value: string | undefined) {
+        assert.equal(key, "pi-quote:refresh");
+        assert.equal(value, undefined);
+        refreshes.push(editor);
+      },
+
       notify(message: string) {
         notifications.push(message);
       },
@@ -229,4 +260,10 @@ test("the session tree rejects an entry without a message", async () => {
   await keys.get("alt+q")!.handler(ctx);
   assert.equal(editor, "> Second question\n\n");
   assert.deepEqual(notifications, ["No message in this entry."]);
+  assert.deepEqual(refreshes, []);
+
+  editor = "";
+  await cmds.get("quote")!.handler("pick", ctx);
+  assert.equal(editor, "> Second question\n\n");
+  assert.deepEqual(refreshes, ["> Second question\n\n"]);
 });
